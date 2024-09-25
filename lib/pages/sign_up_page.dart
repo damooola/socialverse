@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 import '../helper/helper_functions.dart';
@@ -43,6 +43,14 @@ class _SignUpPageState extends State<SignUpPage> {
         UserCredential? userCredential =
             await _firebaseAuth.createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
+
+        await FirebaseFirestore.instance
+            .collection("Users")
+            .doc(userCredential.user!.email)
+            .set({
+          "username": userNameController.text,
+          "email": userCredential.user!.email
+        });
         if (mounted) {
           Navigator.pop(context);
         }
