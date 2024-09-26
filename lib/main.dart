@@ -8,7 +8,6 @@ import 'package:social_media_app/pages/home_page.dart';
 import 'package:social_media_app/pages/profile_page.dart';
 import 'package:social_media_app/pages/users_page.dart';
 import 'package:social_media_app/theme/dark_mode.dart';
-import 'package:social_media_app/theme/light_mode.dart';
 import 'package:social_media_app/theme/theme_provider.dart';
 
 void main() async {
@@ -29,12 +28,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: lightMode,
+      theme: darkMode,
       darkTheme: darkMode,
       home: const AuthGate(),
       routes: {
         "/signin_signup_page": (context) => const SigninOrSignupPage(),
-        "/home_page": (context) => const HomePage(),
+        "/home_page": (context) => HomePage(),
         "/profile_page": (context) => ProfilePage(),
         "/users_page": (context) => UsersPage(),
       },
