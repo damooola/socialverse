@@ -63,20 +63,22 @@ class UsersPage extends StatelessWidget {
                     itemCount: userList.length,
                     itemBuilder: (context, index) {
                       final Map<String, dynamic> user = userList[index];
-                      // if (user["email"] != currentUser!.email) {
-                      return ListTile(
-                        leading: Container(
-                            padding: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).colorScheme.primary),
-                            child: const Icon(Icons.person)),
-                        title: Text(
-                          user["username"],
-                        ),
-                        subtitle: Text(user["email"]),
-                      );
-                      // }
+                      if (user["email"] != currentUser!.email) {
+                        return ListTile(
+                          leading: Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).colorScheme.primary),
+                              child: const Icon(Icons.person)),
+                          title: Text(
+                            user["username"],
+                          ),
+                          subtitle: Text(user["email"]),
+                        );
+                      } else {
+                        return Container();
+                      }
                     },
                   ),
                 ),
