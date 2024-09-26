@@ -12,12 +12,10 @@ import 'package:social_media_app/theme/light_mode.dart';
 import 'package:social_media_app/theme/theme_provider.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   // initialise firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
 
 // add provider to app
   runApp(ChangeNotifierProvider(
@@ -37,8 +35,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "/signin_signup_page": (context) => const SigninOrSignupPage(),
         "/home_page": (context) => const HomePage(),
-        "/profile_page": (context) => const ProfilePage(),
-        "/users_page": (context) => const UsersPage(),
+        "/profile_page": (context) => ProfilePage(),
+        "/users_page": (context) => UsersPage(),
       },
     );
   }
