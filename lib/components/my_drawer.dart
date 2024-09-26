@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'my_drawer_tile.dart';
 
 class MyDrawer extends StatelessWidget {
-  final String currentUserName;
-  const MyDrawer({super.key, required this.currentUserName});
+  const MyDrawer({super.key});
 
-  // logout/sigout method
+  // logout/signout method
   void signOut() {
     FirebaseAuth.instance.signOut();
   }
@@ -30,12 +29,6 @@ class MyDrawer extends StatelessWidget {
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                   ),
-                  // a tile in the drawer to identify which user is currently logged in
-                  MyDrawerTile(
-                      text: currentUserName,
-                      iconData: Icons.person_2_rounded,
-                      onTap: () {}),
-
                   //home list tile
                   MyDrawerTile(
                       text: "Home",
@@ -45,7 +38,7 @@ class MyDrawer extends StatelessWidget {
                   //settings tile
                   MyDrawerTile(
                       text: "Profile",
-                      iconData: Icons.settings,
+                      iconData: Icons.person_2_rounded,
                       onTap: () {
                         //pop the drawer
                         Navigator.pop(context);
@@ -55,7 +48,7 @@ class MyDrawer extends StatelessWidget {
                   //users tile
                   MyDrawerTile(
                       text: "Users",
-                      iconData: Icons.settings,
+                      iconData: Icons.group,
                       onTap: () {
                         //pop the drawer
                         Navigator.pop(context);
