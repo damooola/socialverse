@@ -6,7 +6,7 @@ class MyDrawer extends StatelessWidget {
   final String currentUserName;
   const MyDrawer({super.key, required this.currentUserName});
 
-  //Logout method
+  // logout/sigout method
   void signOut() {
     FirebaseAuth.instance.signOut();
   }
