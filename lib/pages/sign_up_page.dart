@@ -37,20 +37,20 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.pop(context);
       // show error to user
       showErrorMessage("Passwords Don't Match!", context);
-    } else {
+    }
+    //if passwords match
+    else {
       // try creating new user
       try {
+        // user credential
         UserCredential? userCredential =
             await _firebaseAuth.createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
 
-        await FirebaseFirestore.instance
-            .collection("Users")
-            .doc(userCredential.user!.email)
-            .set({
-          "username": userNameController.text,
-          "email": userCredential.user!.email
-        });
+        // create a new user doc and add to firestore
+        createNewUserDocument(userCredential);
+
+        // pop the loading circle
         if (mounted) {
           Navigator.pop(context);
         }
@@ -60,6 +60,19 @@ class _SignUpPageState extends State<SignUpPage> {
           showErrorMessage("${e.message}", context);
         }
       }
+    }
+  }
+
+  // create and add new user to firestore
+  Future<void> createNewUserDocument(UserCredential? userCredential) async {
+    if (userCredential != null && userCredential.user != null) {
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(userCredential.user!.email)
+          .set({
+        "username": userNameController.text,
+        "email": userCredential.user!.email
+      });
     }
   }
 
