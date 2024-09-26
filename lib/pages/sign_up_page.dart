@@ -64,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   // create and add new user to firestore
-  Future<void> createNewUserDocument(UserCredential? userCredential) async {
+  void createNewUserDocument(UserCredential? userCredential) async {
     if (userCredential != null && userCredential.user != null) {
       await FirebaseFirestore.instance
           .collection("Users")
