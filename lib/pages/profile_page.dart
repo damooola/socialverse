@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_app/components/my_app_bar.dart';
+import 'package:social_media_app/components/my_back_button.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -21,7 +21,6 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: const MyAppBar(title: "Profile Page"),
       body: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         future: fetchUserDetails(),
         builder: (context, snapshot) {
@@ -47,8 +46,42 @@ class ProfilePage extends StatelessWidget {
             return Center(
               child: Column(
                 children: [
-                  Text(userData!["email"]),
-                  Text(userData["username"])
+                  const Padding(
+                    padding: EdgeInsets.only(left: 25.0, top: 50),
+                    child: Row(
+                      children: [
+                        MyBackButton(),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+
+                  // profile picture
+                  Container(
+                    padding: const EdgeInsets.all(25),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        color: Theme.of(context).colorScheme.primary),
+                    child: const Icon(
+                      Icons.person_rounded,
+                      size: 60,
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  //username
+                  Text(
+                    userData!["username"],
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 25),
+                  ),
+                  //user email
+                  Text(
+                    userData["email"],
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: Theme.of(context).colorScheme.secondary),
+                  ),
                 ],
               ),
             );
